@@ -10,19 +10,19 @@ import env
 genai.configure(api_key=env.GOOGLE_API_KEY)
 
 # path='/home/jinx/Documentos/projects/gemini/image.jpg'
-img = Image.open(f'{env.IMG_PATH}food.jpeg')
+img = Image.open(f'./img/nature.jpg')
 # img.show()
 
 model = genai.GenerativeModel('gemini-pro-vision')
 response = model.generate_content(img)
-print(response.text)
+#print(response.text)
 
-# response = model.generate_content(
-#         [
-#             "Write a short, engaging blog post based on this picture. It should include a description of the meal in the photo and talk about my journey meal prepping.",
-#             img
-#         ],
-#         stream=True
-#     )
-# response.resolve()
-# print(response.text)
+response = model.generate_content(
+        [
+            "Write a short, engaging blog post based on this picture. It should include a description of the meal in the photo and talk about my journey meal prepping.",
+            img
+        ],
+        stream=True
+    )
+response.resolve()
+print(response.text)
