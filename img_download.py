@@ -7,10 +7,10 @@ def name_img():
     if len(img_db) == 0:
         img_name = "img_0"
     else:
-
         img_number = img_db[0].split("_")[1].split(".")[0]
         img_name = f"img_{int(img_number) + 1}" 
         print(img_name)
+    return img_name
 
 def download_image(url, filename):
     response = requests.get(url)
