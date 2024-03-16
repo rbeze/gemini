@@ -1,8 +1,9 @@
 import requests
 import os
+import img_path
 
 def name_img():
-    img_db = os.listdir("/home/rbeze/Desktop/gemini/img")
+    img_db = os.listdir(img_path.path))
     print(img_db)
     if len(img_db) == 0:
         img_name = "img_0"
