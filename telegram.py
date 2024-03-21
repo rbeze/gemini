@@ -2,6 +2,7 @@ import sys
 import time
 import telepot
 import env
+import img_download
 from img_downloader import get_image as img
 from nlp import gemini_nlp as nlp
 from vision import gemini_vision as vision
@@ -16,7 +17,7 @@ def handle(msg):
             # mudar o argumento vision para o caminho da imagem com que foi feito o download utilizando Python
             #bot.sendMessage(chat_id, vision(msg['text']))
         #else:
-            image = img()
+            image = img_download.Image(img_download.url, img_download.db_path)
             bot.sendMessage(chat_id, vision(image))
 
 #TOKEN = sys.argv[1]  # get token from command-line
