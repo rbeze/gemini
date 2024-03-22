@@ -1,8 +1,9 @@
 #curl -o image.jpeg https://t0.gstatic.com/licensed-image?q=tbn:ANd9GcQ_Kevbk21QBRy-PgB4kQpS79brbmmEG7m3VOTShAn4PecDU5H5UxrJxE3Dw1JiaG17V88QIol19-3TM2wCHw
 
 import google.generativeai as genai
-import img_download
+import img_download, img_path
 from PIL import Image
+from img_download import ImageProcessing
 
 # https://aistudio.google.com/app/apikey
 import env 
@@ -19,26 +20,21 @@ class Gemini():
                 print(m.name)
         
         model = genai.GenerativeModel('gemini-pro')
-        response = genai.generate_content(user_msg)
+        response = model.generate_content(self.user_msg)
 
         return response.text
 
     def vision(self):
+        img_url = self.user_msg
+        img_proc = ImageProcessing(img_url)
+        img_name = img_proc.download_img()
 
-        # path='/home/jinx/Documentos/projects/gemini/image.jpg'
-        with Image.frombytes('RGB', (3, 2), user_img) as img:
+        img_path = f'{img_path.path}/{img_name}'
+        img = Image.open(img_path)
         # img.show()
-            model = genai.GenerativeModel('gemini-pro-vision')
-            response = model.generate_content(img)
-        #print(response.text)
 
-            #response = model.generate_content(
-            #[
-            #"Write a short, engaging blog post based on this picture.",
-            #img
-            #],
-            #stream=True
-            #)
-            #response.resolve()
-            ai_response = response.text
-            return ai_response
+        model = genai.GenerativeModel('gemini-pro-vision')
+        response = model.generate_content(img)
+        img_proc.delete_image(img_path)
+
+        return response.text

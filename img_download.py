@@ -2,7 +2,7 @@ import requests
 import os
 import img_path
 
-class Image:
+class ImageProcessing:
     def __init__(self, img_url):
         self.img_url = img_url
         ext = url.split(".")[-1]
@@ -33,10 +33,3 @@ class Image:
         else:
             print("Falha ao fazer o download: ", response.status_code)
         return self.img_name
-
-# Exemplo de uso:
-url = "https://t.ctcdn.com.br/lvns56iaSMyHvyTur4JeYS_NYeY=/i606944.png"
-db_path = img_path.path_list
-nome_arquivo = "imagem.jpg"
-#download_image(url, nome_arquivo)
-image_download = Image(url, db_path)
