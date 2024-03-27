@@ -5,7 +5,7 @@ import img_path
 class ImageProcessing:
     def __init__(self, img_url):
         self.img_url = img_url
-        ext = url.split(".")[-1]
+        ext = self.img_url.split(".")[-1]
         img_db = os.listdir(img_path.path)
 
         if len(img_db) != 0:
@@ -29,7 +29,7 @@ class ImageProcessing:
         if response.status_code == 200:
             with open(f"{img_path.path}/{self.img_name}", 'wb') as f:
                 f.write(response.content)
-            print("Download concluído: ", filename)
+            print("Download concluído: ", self.img_name)
         else:
             print("Falha ao fazer o download: ", response.status_code)
         return self.img_name

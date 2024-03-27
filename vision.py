@@ -27,14 +27,14 @@ class Gemini():
     def vision(self):
         img_url = self.user_msg
         img_proc = ImageProcessing(img_url)
-        img_name = img_proc.download_img()
+        img_name = img_proc.download_image()
 
-        img_path = f'{img_path.path}/{img_name}'
-        img = Image.open(img_path)
+        image_path = f'{img_path.path}/{img_name}'
+        img = Image.open(image_path)
         # img.show()
 
         model = genai.GenerativeModel('gemini-pro-vision')
         response = model.generate_content(img)
-        img_proc.delete_image(img_path)
+        img_proc.delete_image(image_path)
 
         return response.text

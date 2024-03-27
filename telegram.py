@@ -12,7 +12,7 @@ def handle(msg):
     if content_type == 'text':
         if "https" in msg['text']:
             ai_msg = Gemini(msg['text']).vision()
-            bot.SendMessage(chat_id, ai_msg)
+            bot.sendMessage(chat_id, ai_msg)
         else:
             ai_msg = Gemini(msg['text']).nlp()
             bot.sendMessage(chat_id, ai_msg)
